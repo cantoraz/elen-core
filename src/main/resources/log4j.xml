@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="Target" value="System.out" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n" />
+		</layout>
+	</appender>
+
+<!--	<appender name="SMTP" class="org.apache.log4j.net.SMTPAppender">-->
+<!--		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />-->
+<!--		<param name="Threshold" value="ERROR" />-->
+<!--		<param name="To" value="errorlog@yocoupon.com" />-->
+<!--		<param name="From" value="postmaster@yocoupon.com" />-->
+<!--		<param name="Subject" value="Yocoupon.com Server Errors" />-->
+<!--		<param name="SMTPHost" value="localhost" />-->
+<!--		<param name="BufferSize" value="10" />-->
+<!--		<layout class="org.apache.log4j.PatternLayout">-->
+<!--			<param name="ConversionPattern" value="[%d{ABSOLUTE},%c{1}] %m%n" />-->
+<!--		</layout>-->
+<!--	</appender>-->
+
+	<logger name="cn.caz.robot.vbot">
+		<level value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<root>
+		<priority value="WARN" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+</log4j:configuration>

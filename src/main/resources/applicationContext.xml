@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           						http://www.springframework.org/schema/aop
+           						http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           						http://www.springframework.org/schema/context
+           						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           						http://www.springframework.org/schema/tx
+           						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+	default-autowire="byType">
+	
+	<context:annotation-config />
+	
+	<context:component-scan base-package="cn.caz.elen.core" />
+	
+	<aop:aspectj-autoproxy />
+	
+	<context:property-placeholder location="classpath:spring.properties" />
+
+	<bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<bean id="dbcpDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxIdle" value="${jdbc.maxIdel}" />
+		<property name="minIdle" value="${jdbc.minIdel}" />
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dbcpDataSource" />
+		<property name="packagesToScan" value="cn.caz.elen.core.domain" />
+		<property name="namingStrategy" ref="prefixNamingStrategy" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.id.new_generator_mappings">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.cache.user_query_cache">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="prefixNamingStrategy" class="cn.caz.elen.core.orm.util.PrefixNamingStrategy">
+		<property name="prefix" value="t_" />
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="dataSource" ref="dbcpDataSource" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<bean class="cn.caz.elen.core.filefactory.FileFactory">
+		<property name="map">
+			<map>
+				<entry key="IMAGE">
+					<bean class="cn.caz.elen.core.filefactory.PathConfig">
+						<property name="flag" value="IMAGE" />
+						<property name="localPath" value="/web/pictures/" />
+						<property name="httpPath" value="/pictures/" />
+					</bean>
+				</entry>
+				<entry key="IMAGEORIGIN">
+					<bean class="cn.caz.elen.core.filefactory.PathConfig">
+						<property name="flag" value="IMAGEORIGIN" />
+						<property name="localPath" value="/web/pictures_origin/" />
+						<property name="httpPath" value="/pictures_origin/" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+</beans>
