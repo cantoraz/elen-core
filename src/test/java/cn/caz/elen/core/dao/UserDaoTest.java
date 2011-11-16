@@ -12,8 +12,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +36,6 @@ public class UserDaoTest extends AbstractTest {
 	private static final String PASSWORD = "ichbincaz";
 
 	private static final String PASSWORD_NEW = "123456";
-
-	private static Log logger = LogFactory.getLog(UserDaoTest.class);
 
 	@Autowired()
 	private IUserDao userDao;

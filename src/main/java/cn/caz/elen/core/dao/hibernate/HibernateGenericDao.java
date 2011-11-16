@@ -11,8 +11,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -30,8 +28,6 @@ import cn.caz.elen.core.vo.Pager;
  * 
  */
 public abstract class HibernateGenericDao<E extends IElenModel> extends HibernateDaoSupport implements IGenericDao<E> {
-
-	private Log logger = LogFactory.getLog(super.getClass());
 
 	private Class<E> entityClass;
 

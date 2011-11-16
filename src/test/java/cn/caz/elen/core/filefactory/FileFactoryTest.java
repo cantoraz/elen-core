@@ -3,8 +3,6 @@
  */
 package cn.caz.elen.core.filefactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +14,6 @@ import cn.caz.elen.core.AbstractTest;
  * 
  */
 public class FileFactoryTest extends AbstractTest {
-
-	private static Log logger = LogFactory.getLog(FileFactoryTest.class);
 
 	@Autowired
 	private FileFactory fileFactory;

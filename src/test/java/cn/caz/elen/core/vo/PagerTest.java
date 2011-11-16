@@ -5,8 +5,6 @@ package cn.caz.elen.core.vo;
 
 import static org.junit.Assert.assertEquals;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 import cn.caz.elen.core.AbstractTest;
@@ -16,9 +14,6 @@ import cn.caz.elen.core.AbstractTest;
  * 
  */
 public class PagerTest extends AbstractTest {
-
-	@SuppressWarnings("unused")
-	private static Log logger = LogFactory.getLog(PagerTest.class);
 
 	@Test
 	public void testPager() {
