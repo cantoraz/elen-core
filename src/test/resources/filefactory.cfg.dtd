@@ -1,0 +1,14 @@
+<!--root element-->
+<!ELEMENT filefactory (path*)>
+<!ATTLIST filefactory 
+	version CDATA #IMPLIED
+>
+
+<!--path-->
+<!ELEMENT path (#PCDATA)>
+<!ATTLIST path
+	name CDATA #REQUIRED
+	desc CDATA #REQUIRED
+	local CDATA #REQUIRED
+	http CDATA #IMPLIED
+>

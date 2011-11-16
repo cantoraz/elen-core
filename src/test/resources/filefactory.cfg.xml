@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filefactory SYSTEM "filefactory.cfg.dtd">
+<filefactory version="1.0">
+	<path name="UP" local="/Users/caz/webdata/data/TestWeb/upload" desc="upload" />
+	<path name="DL" local="/Users/caz/webdata/data/TestWeb/download" desc="download" />
+</filefactory>
