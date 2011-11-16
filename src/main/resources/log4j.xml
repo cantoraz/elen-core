@@ -25,13 +25,12 @@
 <!--		</layout>-->
 <!--	</appender>-->
 
-	<logger name="cn.caz.robot.vbot">
-		<level value="DEBUG" />
+	<logger name="cn.caz.elen.core">
+		<level value="ERROR" />
 		<appender-ref ref="CONSOLE" />
 	</logger>
 
 	<root>
-		<priority value="WARN" />
-		<appender-ref ref="CONSOLE" />
+		<priority value="OFF" />
 	</root>
 </log4j:configuration>
